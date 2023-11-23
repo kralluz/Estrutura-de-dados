@@ -30,6 +30,10 @@ void empilhar(Pilha *pilha, int valor) {
     }
 }
 
+int exibirTopoPilha(Pilha *pilha) {
+        return pilha->dados[pilha- >topo];
+}
+
 int desempilhar(Pilha *pilha) {
     if (estaVazia(pilha)) {
         printf("A pilha está vazia. Não é possível remover um valor.\n");
@@ -42,7 +46,9 @@ int desempilhar(Pilha *pilha) {
 }
 
 int tamanhoPilha(Pilha *pilha) {
-    return pilha->topo + 1;
+    for (int i = pilha->topo; i >= 0; i--) {
+        printf("%d\n", pilha->dados[i]);
+    }
 }
 
 void exibirPilha(Pilha *pilha) {
@@ -74,16 +80,17 @@ int main() {
     Pilha pilha;
     inicializarPilha(&pilha);
     int escolha, valor;
-
-    while (1) {
+    int exit = 1;
+    do{
         printf("\nMenu:\n");
-        printf("1. Inserir na pilha\n");
-        printf("2. Remover da pilha\n");
-        printf("3. Mostrar tamanho da pilha\n");
-        printf("4. Exibir conteúdo da pilha\n");
-        printf("5. Buscar um item na pilha\n");
-        printf("6. Sair\n");
-        printf("Escolha uma opção: ");
+        printf("1. Inserir item\n");
+        printf("2. Remover item\n");
+        printf("3. Tamanho da pilha\n");
+        printf("4. Topo da pilha");
+        printf("5. Exibir pilha\n");
+        printf("6. Buscar item\n");
+        printf("7. Sair\n");
+        printf("Opção: ");
         scanf("%d", &escolha);
 
         switch (escolha) {
@@ -102,12 +109,16 @@ int main() {
                 printf("Tamanho da pilha: %d\n", tamanhoPilha(&pilha));
                 break;
             case 4:
-                exibirPilha(&pilha);
+                printf("O valor no topo da pilha é %d empilhado.\n", exibirTopoPilha(&pilha));
                 break;
             case 5:
                 printf("Digite um valor para buscar: ");
                 scanf("%d", &valor);
                 buscarNaPilha(&pilha, valor);
+            case 6:
+                printf("Digite um valor para buscar: ");
+            case 7:
+                exit = 0;
             }
-        }
+        } while (exit = 1);
     }
