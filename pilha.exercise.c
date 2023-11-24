@@ -31,7 +31,7 @@ void empilhar(Pilha *pilha, int valor) {
 }
 
 int exibirTopoPilha(Pilha *pilha) {
-        return pilha->dados[pilha- >topo];
+        return pilha->dados[pilha->topo];
 }
 
 int desempilhar(Pilha *pilha) {
@@ -51,13 +51,13 @@ int tamanhoPilha(Pilha *pilha) {
     }
 }
 
-void exibirPilha(Pilha *pilha) {
+int exibirPilha(Pilha *pilha) {
     if (estaVazia(pilha)) {
         printf("A pilha está vazia.\n");
     } else {
         printf("Conteúdo da pilha:\n");
         for (int i = pilha->topo; i >= 0; i--) {
-            printf("%d\n", pilha->dados[i]);
+            printf("%d, ", pilha->dados[i]);
         }
     }
 }
@@ -80,13 +80,14 @@ int main() {
     Pilha pilha;
     inicializarPilha(&pilha);
     int escolha, valor;
-    int exit = 1;
+    int I;
     do{
+        
         printf("\nMenu:\n");
         printf("1. Inserir item\n");
         printf("2. Remover item\n");
         printf("3. Tamanho da pilha\n");
-        printf("4. Topo da pilha");
+        printf("4. Topo da pilha\n");
         printf("5. Exibir pilha\n");
         printf("6. Buscar item\n");
         printf("7. Sair\n");
@@ -95,30 +96,41 @@ int main() {
 
         switch (escolha) {
             case 1:
+                system("clear");
                 printf("Digite um valor para inserir: ");
                 scanf("%d", &valor);
                 empilhar(&pilha, valor);
                 break;
             case 2:
+                system("clear");
                 valor = desempilhar(&pilha);
                 if (valor != -1) {
                     printf("Valor removido: %d\n", valor);
                 }
                 break;
             case 3:
+                system("clear");
                 printf("Tamanho da pilha: %d\n", tamanhoPilha(&pilha));
                 break;
             case 4:
+                system("clear");
                 printf("O valor no topo da pilha é %d empilhado.\n", exibirTopoPilha(&pilha));
                 break;
             case 5:
+                system("clear");
+                printf("%d\n",exibirPilha(&pilha));
+                break;
+            case 6:
+                system("clear");
                 printf("Digite um valor para buscar: ");
                 scanf("%d", &valor);
-                buscarNaPilha(&pilha, valor);
-            case 6:
-                printf("Digite um valor para buscar: ");
-            case 7:
-                exit = 0;
+            case 7: 
+                system("clear");
+                puts("Bye");
+                return 0;
+                break;
+            default:
+                printf("opção inválida, tente novamente");
             }
-        } while (exit = 1);
+        }while(I != 7);
     }
